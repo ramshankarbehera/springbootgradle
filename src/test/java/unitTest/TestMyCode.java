@@ -1,12 +1,10 @@
 package com.javadeveloperzone;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-public class TestMyCode {
+class TestMyCode {
 
     @Test
-    public void testPrintMessage() {
+    void justAnExample() {
         System.out.println("This test method should be run");
-        assertEquals("test","test");
     }
 }
