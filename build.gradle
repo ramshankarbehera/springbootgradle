@@ -48,10 +48,6 @@ junitPlatform {
         }
         // includeClassNamePattern '.*Test'
     }
-    // configurationParameter 'junit.jupiter.conditions.deactivate', '*'
-    // enableStandardTestTask true
-    // reportsDir file('build/test-results/junit-platform') // this is the default
-    logManager 'org.apache.logging.log4j.jul.LogManager'
 }
 
 dependencies {
@@ -67,9 +63,6 @@ dependencies {
     // To avoid compiler warnings about @API annotations in JUnit code
     testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
 
-    // To use Log4J's LogManager
-    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
-    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
 
     // Only needed to run tests in an (IntelliJ) IDE(A) that bundles an older version
     testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
