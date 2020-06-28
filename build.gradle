@@ -74,10 +74,12 @@ dependencies {
     // Only needed to run tests in an (IntelliJ) IDE(A) that bundles an older version
     testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 }
-
-task wrapper(type: Wrapper) {
-    description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.3.1'
+test {
+    useJUnitPlatform {
+        includeTags 'fast'
+        excludeTags 'slow'
+    }
 }
+
 group 'spring-boot-demo'
 version '1.0-SNAPSHOT'
