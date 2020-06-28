@@ -25,8 +25,8 @@ jar {
 }
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 sourceSets {
     main.java.srcDirs += 'src'
@@ -51,14 +51,10 @@ jacocoTestReport {
     }
 }
 
-tasks.withType(Test) {
+test {
     useJUnitPlatform {
-        includeEngines 'junit-jupiter', 'junit-vintage'
-    }
-    testLogging {
-        exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
+        includeTags 'fast'
+        excludeTags 'slow'
     }
 }
 
