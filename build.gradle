@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -48,6 +49,17 @@ jacocoTestReport {
         html.enabled false
         xml.destination file("${buildDir}/reports/jacoco/jacocoXml")
     }
+}
+junitPlatform {
+    filters {
+        engines {
+        }
+        tags {
+            include 'fast'
+
+        }
+    }
+    logManager 'org.apache.logging.log4j.jul.LogManager'
 }
 
 test {
