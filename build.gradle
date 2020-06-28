@@ -52,7 +52,9 @@ jacocoTestReport {
 }
 
 tasks.withType(Test) {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter', 'junit-vintage'
+    }
     testLogging {
         exceptionFormat "full"
         events "started", "skipped", "passed", "failed"
