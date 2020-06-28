@@ -15,6 +15,9 @@ description = "Spring boot Gradle Example"
 
 apply plugin: 'java'                                // plugin for java
 apply plugin: 'org.springframework.boot'            // plugin for spring boot framework
+apply plugin: 'jacoco'
+apply plugin: "maven"
+apply plugin: "org.sonarqube"
 
 jar {
     baseName = 'spring-boot-gradle-example'             // jar file name
@@ -23,7 +26,40 @@ jar {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")     // web application dependency
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
 }
+jacoco {
+    toolVersion = "0.7.9"
+    reportsDir = file("${buildDir}/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+        xml.destination file("${buildDir}/reports/jacoco/jacocoXml")
+    }
+}
+
+test {
+    ignoreFailures = false
+    useJUnitPlatform()
+    maxHeapSize = '1G'
+    jacoco {
+        append = false
+        destinationFile = file("${buildDir}/reports/jacoco/jacoco.exec")
+    }
+
+    testLogging {
+        exceptionFormat "full" // default is "short"
+        events "passed", "skipped", "failed"
+    }
+}
+
+test.finalizedBy(project.tasks.jacocoTestReport)
+
 
 sourceCompatibility = 1.8                               // for Java 1.8
 targetCompatibility = 1.8
