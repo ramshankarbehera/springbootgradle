@@ -17,7 +17,6 @@ apply plugin: 'java'                                // plugin for java
 apply plugin: 'org.springframework.boot'            // plugin for spring boot framework
 apply plugin: 'jacoco'
 apply plugin: "maven"
-apply plugin: "org.sonarqube"
 
 jar {
     baseName = 'spring-boot-gradle-example'             // jar file name
