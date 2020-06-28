@@ -9,6 +9,7 @@ buildscript {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 description = "Spring boot Gradle Example"
@@ -24,13 +25,21 @@ jar {
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter-api:5.4.0')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.0')
-    testRuntime('org.junit.vintage:junit-vintage-engine:5.4.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
+}
+sourceSets {
+    main.java.srcDirs += 'src'
+    main.resources.srcDirs += 'src'
+    test.java.srcDirs += 'test'
+    test.resources.srcDirs += 'test'
 }
 jacoco {
     toolVersion = "0.7.9"
     reportsDir = file("${buildDir}/reports/jacoco")
+}
+junitPlatform {
+    details 'tree'
 }
 
 jacocoTestReport {
