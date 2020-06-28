@@ -24,9 +24,9 @@ jar {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")     // web application dependency
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+    testCompile('org.junit.jupiter:junit-jupiter-api:5.4.0')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.0')
+    testRuntime('org.junit.vintage:junit-vintage-engine:5.4.0')
 }
 jacoco {
     toolVersion = "0.7.9"
@@ -42,18 +42,12 @@ jacocoTestReport {
     }
 }
 
-test {
-    ignoreFailures = false
+tasks.withType(Test) {
     useJUnitPlatform()
-    maxHeapSize = '1G'
-    jacoco {
-        append = false
-        destinationFile = file("${buildDir}/reports/jacoco/jacoco.exec")
-    }
-
     testLogging {
-        exceptionFormat "full" // default is "short"
-        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
     }
 }
 
