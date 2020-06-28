@@ -38,10 +38,6 @@ jacoco {
     toolVersion = "0.7.9"
     reportsDir = file("${buildDir}/reports/jacoco")
 }
-junitPlatform {
-    details 'tree'
-}
-
 jacocoTestReport {
     reports {
         xml.enabled true
@@ -49,17 +45,6 @@ jacocoTestReport {
         html.enabled false
         xml.destination file("${buildDir}/reports/jacoco/jacocoXml")
     }
-}
-junitPlatform {
-    filters {
-        engines {
-        }
-        tags {
-            include 'fast'
-
-        }
-    }
-    logManager 'org.apache.logging.log4j.jul.LogManager'
 }
 
 test {
